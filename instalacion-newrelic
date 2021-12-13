@@ -1,0 +1,135 @@
+ubuntu@central:~$ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-FMLPBKUGGWDIS67UI0EGWF3V9GD NEW_RELIC_ACCOUNT_ID=3333111 NEW_RELIC_REGION=EU /usr/local/bin/newrelic install
+Starting installation.
+Installing New Relic CLI v0.40.2
+Installing to /usr/local/bin using sudo
+
+   _   _                 ____      _ _
+  | \ | | _____      __ |  _ \ ___| (_) ___
+  |  \| |/ _ \ \ /\ / / | |_) / _ | | |/ __|
+  | |\  |  __/\ V  V /  |  _ |  __| | | (__
+  |_| \_|\___| \_/\_/   |_| \_\___|_|_|\___|
+
+  Welcome to New Relic. Let's install some instrumentation.
+
+  Questions? Read more about our installation process at
+  https://docs.newrelic.com/
+
+	
+INFO Validating connectivity to the New Relic platform... 
+The guided installation will begin by installing the latest version of the New Relic Infrastructure agent, which is required for additional instrumentation.
+
+? Please choose from the following instrumentation to be installed: Logs integration, Golden Signal Alerts
+
+The following will be installed:
+  Infrastructure Agent
+  Logs integration
+  Golden Signal Alerts
+
+==> Installing Infrastructure Agent...
+
+Hit:1 http://security.ubuntu.com/ubuntu focal-security InRelease
+Hit:2 http://nova.clouds.archive.ubuntu.com/ubuntu focal InRelease
+Hit:3 http://nova.clouds.archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:4 http://nova.clouds.archive.ubuntu.com/ubuntu focal-backports InRelease
+Reading package lists...
+Warning: apt-key output should not be parsed (stdout is not a terminal)
+OK
+Hit:1 http://security.ubuntu.com/ubuntu focal-security InRelease
+Hit:2 http://nova.clouds.archive.ubuntu.com/ubuntu focal InRelease
+Hit:3 http://nova.clouds.archive.ubuntu.com/ubuntu focal-updates InRelease
+Get:4 https://download.newrelic.com/infrastructure_agent/linux/apt focal InRelease [10.8 kB]
+Hit:5 http://nova.clouds.archive.ubuntu.com/ubuntu focal-backports InRelease
+Get:6 https://download.newrelic.com/infrastructure_agent/linux/apt focal/main amd64 Packages [102 kB]
+Fetched 112 kB in 1s (91.5 kB/s)
+Reading package lists...
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libpq5:amd64.
+(Reading database ... 39119 files and directories currently installed.)
+Preparing to unpack .../libpq5_12.9-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking libpq5:amd64 (12.9-0ubuntu0.20.04.1) ...
+Selecting previously unselected package td-agent-bit.
+Preparing to unpack .../td-agent-bit_1.8.6_amd64.deb ...
+Unpacking td-agent-bit (1.8.6) ...
+Selecting previously unselected package newrelic-infra.
+Preparing to unpack .../newrelic-infra_1.20.7_amd64.deb ...
+Unpacking newrelic-infra (1.20.7) ...
+Setting up libpq5:amd64 (12.9-0ubuntu0.20.04.1) ...
+Setting up newrelic-infra (1.20.7) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/newrelic-infra.service → /etc/systemd/system/newrelic-infra.service.
+Setting up td-agent-bit (1.8.6) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Running agent status check attempt...
+Agent status check ok.
+
+  ✅ Checking for data in New Relic (this may take a few minutes)...success.
+
+  ⚙️  The Infrastructure Agent configuration file can be found in /etc/newrelic-infra.yml
+  Edit this file to make changes or configure advanced features for the agent. See the docs for options:
+  https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/configuration/infrastructure-agent-configuration-settings
+  
+  Note: Process monitoring has been enabled by default - all other config options are left to the user.
+
+==> Installing Infrastructure Agent...success.
+
+==> Installing Logs integration...
+
+The log files below have been detected:
+  /var/log/alternatives.log
+  /var/log/cloud-init.log
+  /var/log/dpkg.log
+Would you like to tail those log files to New Relic Y/N (default: Y)? Y
+
+
+  ⠴ Checking for data in New Relic (this may take a few minutes)... 
+  ✅ Checking for data in New Relic (this may take a few minutes)...success.
+
+  ⚙️  The Logs configuration file (base configuration) can be found in /etc/newrelic-infra/logging.d/logging.yml
+  ⚙️  The Logs configuration file for discovered processes can be found in /etc/newrelic-infra/logging.d/discovered.yml
+  Edit these files to make changes or configure advanced features for the Logs integration. See the docs for options:
+  https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent#parameters
+
+==> Installing Logs integration...success.
+
+==> Installing Golden Signal Alerts...
+
+  This installation will setup alerts for any existing, and future, hosts and applications reporting to newrelic with the Golden Signal conditions:
+  - High CPU
+  - High Application Error Rate
+  - High Application Response Time
+  - Low Application Throughput
+  This policy can be modified under Alerts & AI\Policies.
+
+Creating alert policy Golden Signals...
+done
+Adding alert condition High CPU...
+done
+Adding alert condition High Application Error percentage...
+done
+Adding alert condition High Application Response Time...
+done
+Adding alert condition Low Application Throughput...
+done
+Would you like to be notified on your registered email address frandh1997@gmail.com when this alert triggers Y/N (default: Y)? 
+Notification channel not found for email address frandh1997@gmail.com, creating notification channel...
+done
+Subscribing alert policy to notification channel...
+done
+==> Installing Golden Signal Alerts...success.
+
+
+  New Relic installation complete 
+
+  --------------------
+  Installation Summary
+
+  ✔  Infrastructure Agent  (installed)  
+  ✔  Logs integration  (installed)  
+  ✔  Golden Signal Alerts  (installed)  
+
+  View your data at the link below:
+  ⮕  https://onenr.io/0NgR7kmr9Ro
+
+  View your logs at the link below:
+  ⮕  https://onenr.io/0bEjOmLDAw6
+
+  --------------------
