@@ -1,4 +1,4 @@
-fran@debian:~/vagrant/proyectonewrelic$ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo  NEW_RELIC_API_KEY=NRAK-FMLPBKUGGWDIS67UI0EGWF3V9GD NEW_RELIC_ACCOUNT_ID=3333111 NEW_RELIC_REGION=EU /usr/local/bin/newrelic install
+fran@debian:~$ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo  NEW_RELIC_API_KEY=NRAK-FMLPBKUGGWDIS67UI0EGWF3V9GD NEW_RELIC_ACCOUNT_ID=3333111 NEW_RELIC_REGION=EU /usr/local/bin/newrelic install
 Starting installation.
 Installing New Relic CLI v0.40.3
 Installing to /usr/local/bin using sudo
