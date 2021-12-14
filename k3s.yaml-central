@@ -1,4 +1,4 @@
-vagrant@controlador:~$ nano ~/.kube/config
+fran@debian:~$ nano ~/.kube/config
 apiVersion: v1
 clusters:
 - cluster:
