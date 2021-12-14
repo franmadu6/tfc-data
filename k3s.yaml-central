@@ -1,4 +1,4 @@
-vagrant@controlador:~$ sudo cat /etc/rancher/k3s/k3s.yaml
+vagrant@controlador:~$ nano ~/.kube/config
 apiVersion: v1
 clusters:
 - cluster:
