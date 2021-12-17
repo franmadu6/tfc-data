@@ -1,0 +1,137 @@
+fran@debian:~/tfc$ cat > snmp-base.yaml <<- YAML
+> devices: null
+> trap:
+>   listen: '127.0.0.1:1620'
+>   community: hello
+>   version: ''
+>   transport: ''
+> discovery:
+>   cidrs:
+>     - 192.168.2.0/24
+>   debug: false
+>   ports:
+>     - 161
+>   default_communities:
+>     - public
+>   default_v3:
+>     user_name: fran
+>     authentication_protocol: NoAuth
+>     privacy_protocol: NoPriv
+>   add_devices: true
+>   add_mibs: true
+>   threads: 4
+>   replace_devices: true
+> global:
+>   poll_time_sec: 60
+>   drop_if_outside_poll: false
+>   mib_profile_dir: /etc/ktranslate/profiles
+>   mibs_db: /etc/ktranslate/mibs.db
+>   mibs_enabled:
+>     - IF-MIB
+>   timeout_ms: 3000
+>   retries: 0
+> YAML
+fran@debian:~/tfc$ docker run -ti --name ktranslate-discovery --rm --net=host \
+> --user `id -u`:`id -g` \
+> -v `pwd`/snmp-base.yaml:/snmp-base.yaml \
+> kentik/ktranslate:v2 \
+>     -snmp /snmp-base.yaml \
+>     -log_level info \
+>     -snmp_discovery=true
+2021-12-17T23:53:52.986 ktranslate [Info] ktranslate version kt-2021-12-16-1585255433 starting
+2021-12-17T23:53:52.986 ktranslate [Info] ktranslate olly: disabled
+2021-12-17T23:53:52.986 ktranslate [Info] ktranslate Setting metrics: none
+2021-12-17T23:53:52.992 ktranslate [Info] KTranslate Turning on 1 processing threads
+2021-12-17T23:53:52.993 ktranslate [Info] KTranslate Loaded 128 custom mappings
+2021-12-17T23:53:52.993 ktranslate [Info] KTranslate Loaded 12 udr and 23 subtype mappings with 347 udrs total
+2021-12-17T23:53:52.993 ktranslate [Info] KTranslate Using sink stdout
+2021-12-17T23:53:52.993 ktranslate [Info] KTranslate Running -- Version kt-2021-12-16-1585255433; Build Thu Dec 16 00:21:26 UTC 2021
+2021-12-17T23:53:52.993 ktranslate [Info] KTranslate CLI: [ktranslate -listen off -mapping /etc/ktranslate/config.json -geo /etc/ktranslate/GeoLite2-Country.mmdb -udrs /etc/ktranslate/udr.csv -api_devices /etc/ktranslate/devices.json -asn /etc/ktranslate/GeoLite2-ASN.mmdb -log_level info -snmp /snmp-base.yaml -log_level info -snmp_discovery=true]
+2021-12-17T23:53:52.994 ktranslate [Info] stdoutSink Receiving logs...
+2021-12-17T23:53:52.995 ktranslate [Info] KTranslate API server running 1 devices
+2021-12-17T23:53:52.995 ktranslate [Info] KTranslate Loaded 1 Kentik devices via local file
+2021-12-17T23:53:52.995 ktranslate [Info] KTranslate SNMP Discovery, loading config from /snmp-base.yaml
+2021-12-17T23:53:52.995 ktranslate [Info] KTranslate Loading db from /etc/ktranslate/mibs.db
+2021-12-17T23:53:52.997 ktranslate [Info] KTranslate Looking at mib profiles in /etc/ktranslate/profiles
+2021-12-17T23:53:52.997 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp
+2021-12-17T23:53:52.997 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/_general
+2021-12-17T23:53:53.002 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/apc
+2021-12-17T23:53:53.004 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/arista
+2021-12-17T23:53:53.004 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/aruba
+2021-12-17T23:53:53.005 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/barracuda
+2021-12-17T23:53:53.005 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/brocade
+2021-12-17T23:53:53.005 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/checkpoint
+2021-12-17T23:53:53.006 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/cisco
+2021-12-17T23:53:53.016 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/dell
+2021-12-17T23:53:53.018 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/eaton
+2021-12-17T23:53:53.019 ktranslate [Info] KTranslate Loading 7 snmp trap data points and 1 traps from /etc/ktranslate/profiles/kentik_snmp/eaton/traps.yml.
+2021-12-17T23:53:53.019 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/exagrid
+2021-12-17T23:53:53.019 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/f5
+2021-12-17T23:53:53.020 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/fortinet
+2021-12-17T23:53:53.020 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/generic
+2021-12-17T23:53:53.020 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/hp
+2021-12-17T23:53:53.021 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/isilon
+2021-12-17T23:53:53.022 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/juniper
+2021-12-17T23:53:53.024 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/mcafee
+2021-12-17T23:53:53.024 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/meraki
+2021-12-17T23:53:53.025 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/mikrotik
+2021-12-17T23:53:53.025 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/nasuni
+2021-12-17T23:53:53.026 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/netapp
+2021-12-17T23:53:53.028 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/netgear
+2021-12-17T23:53:53.028 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/palo_alto
+2021-12-17T23:53:53.028 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/pf_sense
+2021-12-17T23:53:53.029 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/pulse_secure
+2021-12-17T23:53:53.029 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/server_iron
+2021-12-17T23:53:53.029 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/silverpeak
+2021-12-17T23:53:53.029 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/synology
+2021-12-17T23:53:53.030 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/ubiquiti
+2021-12-17T23:53:53.030 ktranslate [Info] KTranslate Recursing into /etc/ktranslate/profiles/kentik_snmp/vertiv
+2021-12-17T23:53:53.030 ktranslate [Info] KTranslate Now trying to extend profiles
+2021-12-17T23:53:53.033 ktranslate [Info] KTranslate Loaded 795 profiles from /etc/ktranslate/profiles
+2021-12-17T23:53:53.033 ktranslate [Info] KTranslate Discovering SNMP devices on 192.168.2.0/24.
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate Starting to check 256 ips in 192.168.2.0/24
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 9/256) Host found at 192.168.2.154, Manufacturer: , Name: Galaxy-A03s. -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 2/256) Host found at 192.168.2.45, Manufacturer: , Name:  -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 9/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 5/256) Host found at 192.168.2.80, Manufacturer: , Name: LGwebOSTV. -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 2/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 5/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 1/256) Host found at 192.168.2.255, Manufacturer: , Name:  -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.263 ktranslate [Info] KTranslate 1/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.276 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.45: error reading from socket: read udp 192.168.2.45:55629->192.168.2.45:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:56.276 ktranslate [Info] KTranslate 3/256) Host found at 192.168.2.0, Manufacturer: , Name:  -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.276 ktranslate [Info] KTranslate 3/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.278 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.80: error reading from socket: read udp 192.168.2.45:51472->192.168.2.80:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:56.278 ktranslate [Info] KTranslate 7/256) Host found at 192.168.2.201, Manufacturer: , Name:  -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.278 ktranslate [Info] KTranslate 7/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.282 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.201: error reading from socket: read udp 192.168.2.45:32847->192.168.2.201:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:56.282 ktranslate [Info] KTranslate 6/256) Host found at 192.168.2.132, Manufacturer: , Name:  -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.282 ktranslate [Info] KTranslate 6/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.284 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.132: error reading from socket: read udp 192.168.2.45:56862->192.168.2.132:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:56.284 ktranslate [Info] KTranslate 8/256) Host found at 192.168.2.108, Manufacturer: , Name: Galaxy-Note20-Ultra-5G. -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.284 ktranslate [Info] KTranslate 8/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.438 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.154: error reading from socket: read udp 192.168.2.45:34171->192.168.2.154:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:56.438 ktranslate [Info] KTranslate 4/256) Host found at 192.168.2.1, Manufacturer: , Name: router.asus.com. -- now attepting checking snmp connectivity
+2021-12-17T23:53:56.438 ktranslate [Info] KTranslate 4/256) Running with SNMP v3: Priv: NoPriv Auth: NoAuth
+2021-12-17T23:53:56.442 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.1: error reading from socket: read udp 192.168.2.45:58457->192.168.2.1:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:56.581 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.108: error reading from socket: read udp 192.168.2.45:34738->192.168.2.108:161: recvfrom: connection refused. Check for correct snmp credentials.
+2021-12-17T23:53:59.264 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.255: request timeout (after 0 retries). Check for correct snmp credentials.
+2021-12-17T23:53:59.277 ktranslate [Warn] KTranslate Cannot get device metadata on 192.168.2.0: request timeout (after 0 retries). Check for correct snmp credentials.
+2021-12-17T23:53:59.277 ktranslate [Info] KTranslate Checked 256 ips in 3.014253796s (from start: 6.244159324s)
+2021-12-17T23:53:59.277 ktranslate [Info] KTranslate Adding 0 new SNMP devices to the configuration. 0 replaced from 0.
+2021-12-17T23:54:00.293 ktranslate [Info] stdoutSink Logs received
+2021-12-17T23:54:00.293 ktranslate [Info] ktranslate service.Close() called, now waiting for things to settle
+
+fran@debian:~/tfc$ docker run -d --name ktranslate-snmp --restart unless-stopped --net=host \
+> -v `pwd`/snmp-base.yaml:/snmp-base.yaml \
+> -e NEW_RELIC_API_KEY=eu01xx16c0d6d2a7cb0ac11972db2512FFFFNRAL  \
+> kentik/ktranslate:v2 \
+>   -snmp /snmp-base.yaml \
+>   -nr_account_id=3333111 \
+>   -log_level=info \
+>   -metrics=jchf \
+>   -tee_logs=true \
+>   -service_name=snmp \
+>   -nr_region=EU \
+>   nr1.snmp
+79a6783d9448fbf05a152ce8151aacaea4688ba3d8910448d4cf4526093bf8d3
